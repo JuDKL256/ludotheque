@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludothèque</title>
+  <link rel="stylesheet" data-th-href="@{/CSS/main.css}">
+</head>
+<body>
+<header>
+  <h1>Bienvenue à la Ludothèque</h1>
+  <nav>
+    <ul>
+      <li><a data-th-href="@{/}">Accueil</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/jeux}">Nos Jeux</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/jeux/ajoutJouet}">Ajouter un Jouet</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/jeux/ajoutJeuSociete}">Ajouter un Jeu de Societe</a></li>
+      <li><a data-th-if="${membreEnSession}==null" data-th-href="@{/connexion}">Connexion</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/deconnexion}">Deconnexion</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="accueil">
+  <h2>Accueil</h2>
+  <p>Bienvenue à la ludothèque ! Découvrez notre large sélection de jeux pour tous les âges et tous les goûts.</p>
+</section>
+
+<section id="jeux">
+  <h2>Nos Jeux</h2>
+  <p>Nous avons une variété de jeux de société, jeux de plateau, jeux éducatifs et bien plus encore.</p>
+  <ul>
+    <li>Jeux de société</li>
+    <li>Jeux de plateau</li>
+    <li>Jeux éducatifs</li>
+    <li>Jeux de stratégie</li>
+  </ul>
+</section>
+
+<section id="evenements">
+  <h2>Événements</h2>
+  <p>Participez à nos événements spéciaux et tournois de jeux.</p>
+  <ul>
+    <li>Tournoi de jeux de société - 1er février 2025</li>
+    <li>Soirée jeux de plateau - 15 février 2025</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Pour plus d'informations, contactez-nous à l'adresse suivante :</p>
+  <p>Email : contact@ludotheque.com</p>
+  <p>Téléphone : 01 23 45 67 89</p>
+</section>
+
+<footer>
+  <marquee data-th-if="${membreEnSession}!=null" data-th-text="${membreEnSession}"></marquee>
+  <p>&copy; 2025 Ludothèque. Tous droits réservés.</p>
+</footer>
+</body>
+</html>

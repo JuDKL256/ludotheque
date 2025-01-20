@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Jeux - Ludothèque</title>
+  <link rel="stylesheet" data-th-href="@{/CSS/main.css}">
+  <link rel="stylesheet" data-th-href="@{/CSS/gestionJeux.css}">
+</head>
+<body>
+<header>
+  <h1>Gestion des Jeux</h1>
+  <nav>
+    <ul>
+      <li><a data-th-href="@{/}">Accueil</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/jeux}">Nos Jeux</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/jeux/ajoutJouet}">Ajouter un Jouet</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/jeux/ajoutJeuSociete}">Ajouter un Jeu de Societe</a></li>
+      <li><a data-th-if="${membreEnSession}==null" data-th-href="@{/connexion}">Connexion</a></li>
+      <li><a data-th-if="${membreEnSession}!=null" data-th-href="@{/deconnexion}">Deconnexion</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="manage-games">
+  <h2>Ajouter un Jeu</h2>
+  <form method="post">
+    <label for="titre">Titre :</label>
+    <input type="text" id="titre" name="titre" required>
+
+    <label for="etat">État :</label>
+    <select id="etat" name="etat" required>
+      <option value="Neuf">Neuf</option>
+      <option value="Bon">Bon</option>
+      <option value="Mauvais">Mauvais</option>
+    </select>
+
+    <label for="age">Âge :</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="description">Description :</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <select name="typeJouet">
+      <option name="typeJouet" data-th-each="t : ${typeJouets}" data-th-value="${t.id}" data-th-text="${t.libelle}"></option>
+    </select>
+
+
+    <button type="submit">Ajouter le Jeu</button>
+  </form>
+</section>
+
+<footer>
+  <marquee data-th-if="${membreEnSession}!=null" data-th-text="${membreEnSession}"></marquee>
+  <p>&copy; 2025 Ludothèque. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
